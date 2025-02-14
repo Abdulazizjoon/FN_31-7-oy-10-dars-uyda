@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import eye from "../img/Eye.svg";
 import Pagination from "@mui/material/Pagination";
 
+
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -53,9 +54,10 @@ function Home() {
           Get all the Info regarding your favorite Crypto Currency
         </p>
         <Swiper
+          className="w-7xl"
           spaceBetween={30}
-          slidesPerView="3"
-          centeredSlides={true}
+          slidesPerView="4"
+          centeredSlides={false}
           autoplay={{
             delay: 500,
             disableOnInteraction: false,
@@ -143,7 +145,7 @@ function Home() {
           </div>
           <Pagination
             page={page}
-            onChange={(e,value) => {
+            onChange={(e, value) => {
               setPage(value);
             }}
             className="flex justify-center"
