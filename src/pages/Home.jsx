@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import eye from "../img/Eye.svg";
-
+import Pagination from "@mui/material/Pagination";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import axios from "axios";
 function Home() {
   let [sliderData, SetSliderData] = useState([]);
   let [data, setData] = useState([]);
+  let [page, setPage] = useState(1)
+  console.log(page);
+  
   useEffect(function () {
     axios
       .get(
@@ -25,6 +28,20 @@ function Home() {
         console.log(err);
       });
   }, []);
+  useEffect(function () {
+    axios
+      .get(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=gecko_desc&per_page=10&page=${page}&sparkline=false&price_change_percentage=24h`
+      )
+      .then((response) => {
+        if (response.status == 200) {
+          return SetSliderData(response.data) && setData(response.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [page])
   console.log(sliderData);
   return (
     <div>
@@ -124,6 +141,14 @@ function Home() {
                 );
               })}
           </div>
+          <Pagination
+            page={page}
+            onChange={(e,value) => {
+              setPage(value);
+            }}
+            className="flex justify-center"
+            count={10}
+          />
         </div>
       </div>
     </div>
