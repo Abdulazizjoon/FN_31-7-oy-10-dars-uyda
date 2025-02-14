@@ -156,8 +156,9 @@ function Home() {
             }}
             className="flex justify-center"
             count={10}
-            color="primary"
-            sx={{mt:'20px',pb:'20px'}}
+            sx={{
+              "& .MuiPaginationItem-root": { color: "#87ceeb"}
+            }}
           />
         </div>
       </div>
