@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 
 import { Autoplay } from "swiper/modules";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function Home() {
   let [sliderData, SetSliderData] = useState([]);
   let [data, setData] = useState([]);
@@ -44,6 +45,10 @@ function Home() {
       });
   }, [page])
   console.log(sliderData);
+  let navigate=useNavigate()
+  function save(id) {
+    navigate(`/details/${id}`)
+  }
   return (
     <div>
       <div className="img w-full h-[400px] pt-16">
@@ -115,8 +120,9 @@ function Home() {
               sliderData.map((value, index) => {
                 return (
                   <div
-                    key={index}
-                    className="w-full pt-4 border-b-[1px] h-24 pl-4 "
+                    key={index} 
+                    onClick={()=>{save(value.id)}}
+                    className="w-full cursor-pointer pt-4 border-b-[1px] h-24 pl-4 "
                   >
                     <div className="w-[445px] flex items-center">
                       <img src={value.image} className="w-12 h-12" alt="" />

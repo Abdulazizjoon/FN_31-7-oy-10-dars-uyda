@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home';
 import MainLayout from './layout/MainLayout';
+import Details from './pages/Details';
 
 function App() {
   return (
@@ -15,14 +16,14 @@ function App() {
             </MainLayout>
           }
         />
-        {/* <Route
-          path="/:id"
+        <Route
+          path="details/:id"
           element={
             <MainLayout>
-              <Home></Home>
+              <Details></Details>
             </MainLayout>
           }
-        /> */}
+        />
       </Routes>
     </div>
   );
