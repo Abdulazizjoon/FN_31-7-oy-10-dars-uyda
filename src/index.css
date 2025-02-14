@@ -1,0 +1,4 @@
+@import "tailwindcss";
+.img{
+    background-image: url(../src/img/bg.png);
+}
