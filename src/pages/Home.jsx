@@ -14,6 +14,9 @@ function Home() {
   let [sliderData, SetSliderData] = useState([]);
   let [data, setData] = useState([]);
   let [page, setPage] = useState(1)
+  const [selectedFilter, setSelectedFilter] = useState(
+    localStorage.getItem("pul") || "all"
+  );
   console.log(page);
   
   useEffect(function () {
@@ -44,6 +47,22 @@ function Home() {
         console.log(err);
       });
   }, [page])
+
+  useEffect(() => {
+    let pul=localStorage.getItem('pul')
+    axios
+      .get(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency${pul}=&order=gecko_desc&per_page=10&page=${page}&sparkline=false&price_change_percentage=24h`
+      )
+      .then((response) => {
+        if (response.status == 200) {
+          return SetSliderData(response.data) && setData(response.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedFilter]);
   console.log(sliderData);
   let navigate=useNavigate()
   function save(id) {

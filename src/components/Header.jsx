@@ -5,7 +5,7 @@ function Header() {
   let [option, setOption] = useState('USD')
   localStorage.setItem('pul',option)
   return (
-    <div className="bg-[#15171B] pt-3 pb-3">
+    <div className="bg-[#15171B] pt-3 pb-3 drop-shadow-2xl">
       <div className="container mx-auto w-[1232px] flex justify-between items-center">
         <Link className="text-[#87CEEB]">CRYPTOFOLIO</Link>
         <div>
